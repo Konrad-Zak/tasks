@@ -1,7 +1,6 @@
 package com.crud.tasks.service;
 
 import com.crud.tasks.domain.Task;
-import com.crud.tasks.exception.TaskNotFoundException;
 import com.crud.tasks.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +26,8 @@ public class DbService {
         return repository.save(task);
     }
 
+    public void deleteTask(final Long id){
+        repository.deleteById(id);
+    }
 
 }
