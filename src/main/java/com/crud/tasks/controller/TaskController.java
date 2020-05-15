@@ -29,13 +29,13 @@ public class TaskController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask")
-    public void deleteTask(@RequestParam Long taskId)throws TaskNotFoundException{
+    public void deleteTask(@RequestParam Long taskId){
         System.out.println("Delete: " + "id: "+getTask(taskId).getId() + " title: " + getTask(taskId).getTitle()
                 + " content: " + getTask(taskId).getContent());
         service.deleteTask(taskId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateTask", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.PUT, value = "updateTask")
     public TaskDto updateTask(@RequestBody TaskDto taskDto){
         return taskMapper.mapToTaskDto(service.saveTask(taskMapper.mapToTask(taskDto)));
     }
