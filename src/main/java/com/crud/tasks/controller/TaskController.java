@@ -5,6 +5,7 @@ import com.crud.tasks.exception.TaskNotFoundException;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,9 +31,11 @@ public class TaskController {
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask")
     public void deleteTask(@RequestParam Long taskId){
-        System.out.println("Delete: " + "id: "+getTask(taskId).getId() + " title: " + getTask(taskId).getTitle()
-                + " content: " + getTask(taskId).getContent());
-        service.deleteTask(taskId);
+        try {
+            service.deleteTask(taskId);
+        } catch (EmptyResultDataAccessException e){
+            System.out.println("Task with id: " + taskId + " not found" );
+        }
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateTask")
