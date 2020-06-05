@@ -35,6 +35,22 @@ public class TrelloClient {
         this.restTemplate = restTemplate;
     }
 
+    public void setTrelloApiEndpoint(String trelloApiEndpoint) {
+        this.trelloApiEndpoint = trelloApiEndpoint;
+    }
+
+    public void setTrelloAppKey(String trelloAppKey) {
+        this.trelloAppKey = trelloAppKey;
+    }
+
+    public void setTrelloToken(String trelloToken) {
+        this.trelloToken = trelloToken;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public List<TrelloBoardDto> getTrelloBoards() {
 
         Optional<TrelloBoardDto[]> optionalTrelloBoardDtos = Optional.ofNullable(restTemplate.getForObject(getUrl(), TrelloBoardDto[].class));
