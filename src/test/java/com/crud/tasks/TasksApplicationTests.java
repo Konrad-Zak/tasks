@@ -18,18 +18,13 @@ import static org.mockito.Mockito.*;
 @RunWith(Parameterized.class)
 class TasksApplicationTests {
 
-	private TrelloClient trelloClient = new TrelloClient();
-
 	@ParameterizedTest
 	@MethodSource("testArguments")
 	public void testGetTrelloBoards(TrelloBoardDto[] tableTrelloBoardDto, int expectedSize){
 		//Given
 		RestTemplate restTemplateMock = mock(RestTemplate.class);
-		trelloClient.setRestTemplate(restTemplateMock);
-		trelloClient.setTrelloApiEndpoint("https://api.trello.com/1");
-		trelloClient.setTrelloAppKey("2222");
-		trelloClient.setTrelloToken("1111");
-		trelloClient.setUserName("test");
+		TrelloClient trelloClient = new TrelloClient("https://api.trello.com/1","2222",
+				"1111","test",restTemplateMock);
 		when(restTemplateMock.getForObject(trelloClient.getUrl(), TrelloBoardDto[].class)).thenReturn(tableTrelloBoardDto);
 		//When
 		List<TrelloBoardDto> list = trelloClient.getTrelloBoards();

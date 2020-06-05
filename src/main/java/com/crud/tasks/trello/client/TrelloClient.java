@@ -1,7 +1,6 @@
 package com.crud.tasks.trello.client;
 
 import com.crud.tasks.domain.TrelloBoardDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -16,39 +15,22 @@ import java.util.Optional;
 @Component
 public class TrelloClient {
 
-    @Value("${trello.api.endpoint.prod}")
     private String trelloApiEndpoint;
-
-    @Value("${trello.app.key}")
     private String trelloAppKey;
-
-    @Value("${trello.app.token}")
     private String trelloToken;
-
-    @Value("${trello.app.userName}")
     private String userName;
-
-    @Autowired
     private RestTemplate restTemplate;
 
-    public void setRestTemplate(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
-
-    public void setTrelloApiEndpoint(String trelloApiEndpoint) {
+    public TrelloClient(@Value("${trello.api.endpoint.prod}") String trelloApiEndpoint,
+                        @Value("${trello.app.key}") String trelloAppKey,
+                        @Value("${trello.app.token}") String trelloToken,
+                        @Value("${trello.app.userName}") String userName,
+                        RestTemplate restTemplate) {
         this.trelloApiEndpoint = trelloApiEndpoint;
-    }
-
-    public void setTrelloAppKey(String trelloAppKey) {
         this.trelloAppKey = trelloAppKey;
-    }
-
-    public void setTrelloToken(String trelloToken) {
         this.trelloToken = trelloToken;
-    }
-
-    public void setUserName(String userName) {
         this.userName = userName;
+        this.restTemplate = restTemplate;
     }
 
     public List<TrelloBoardDto> getTrelloBoards() {
