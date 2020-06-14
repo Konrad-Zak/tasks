@@ -32,6 +32,11 @@ public class SimpleEmailService {
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
+        if (!mail.getToCc().isEmpty()){
+            mailMessage.setCc(mail.getToCc());
+        } else {
+            LOGGER.info("No set additional receiver");
+        }
         return mailMessage;
     }
 }
