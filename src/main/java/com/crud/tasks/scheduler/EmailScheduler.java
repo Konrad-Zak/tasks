@@ -28,9 +28,13 @@ public class EmailScheduler {
         simpleEmailService.send(new Mail(
                 adminConfig.getAdminEmail(),
                 SUBJECT,
-                "Currently id database you got: " + size + " tasks",
+                "Currently id database you got: " + size + correctNamePhraseTask(size),
                 ""
         ));
-
     }
+
+    private String correctNamePhraseTask(long size){
+        return size > 1 ? " tasks" : " task";
+    }
+
 }
