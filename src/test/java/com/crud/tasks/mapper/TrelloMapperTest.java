@@ -2,11 +2,6 @@ package com.crud.tasks.mapper;
 
 import com.crud.tasks.domain.*;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -14,12 +9,10 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
+
 public class TrelloMapperTest {
 
-    @Autowired
-    private TrelloMapper trelloMapper;
+    private TrelloMapper trelloMapper = new TrelloMapper();
 
     @Test
     public void mapToBoard() {

@@ -3,22 +3,14 @@ package com.crud.tasks.mapper;
 import com.crud.tasks.domain.Task;
 import com.crud.tasks.domain.TaskDto;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
 public class TaskMapperTest {
 
-    @Autowired
-    private TaskMapper taskMapper;
+    private TaskMapper taskMapper = new TaskMapper();
 
     @Test
     public void mapToTask() {
@@ -28,7 +20,9 @@ public class TaskMapperTest {
         Task taskResult = taskMapper.mapToTask(taskDto);
         //Then
         assertNotNull(taskResult);
+        assertEquals(taskDto.getId(),taskResult.getId());
         assertEquals(taskDto.getTitle(),taskResult.getTitle());
+        assertEquals(taskDto.getContent(),taskResult.getContent());
     }
 
     @Test
@@ -39,7 +33,9 @@ public class TaskMapperTest {
         TaskDto taskDtoResult = taskMapper.mapToTaskDto(task);
         //Then
         assertNotNull(taskDtoResult);
+        assertEquals(task.getId(),taskDtoResult.getId());
         assertEquals(task.getTitle(),taskDtoResult.getTitle());
+        assertEquals(task.getContent(),taskDtoResult.getContent());
     }
 
     @Test
@@ -52,6 +48,11 @@ public class TaskMapperTest {
         List<TaskDto> resultList = taskMapper.mapToTaskDtoList(tasks);
         //Then
         assertEquals(tasks.size(),resultList.size());
+        assertEquals(tasks.get(0).getId(),tasks.get(0).getId());
+        assertEquals(tasks.get(0).getTitle(),resultList.get(0).getTitle());
+        assertEquals(tasks.get(0).getContent(),resultList.get(0).getContent());
+        assertEquals(tasks.get(1).getId(),resultList.get(1).getId());
         assertEquals(tasks.get(1).getTitle(),resultList.get(1).getTitle());
+        assertEquals(tasks.get(1).getContent(),resultList.get(1).getContent());
     }
 }
