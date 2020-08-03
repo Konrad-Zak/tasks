@@ -62,7 +62,7 @@ create trigger READERS_DELETE after delete on readers
 for each row
 begin
 	insert into readers_aud (EVENT_DATE, EVENT_TYPE, READER_ID)
-	values (CURTIME(), "DELETE", OLD.READER_ID);
+	    values (CURTIME(), "DELETE", OLD.READER_ID);
 end $$
 
 create trigger READERS_UPDATE after update on readers
