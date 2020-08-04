@@ -15,13 +15,13 @@ DELIMITER $$
 
 create event UPDATE_BESTSELLER
 	on schedule every 1 minute
-    do
+        do
 		begin
         	declare quantity int(11);
         	call UpdateBestsellers();
         	select NUMBER_OF_BESTSELLER from BESTSELLERS_COUNT into quantity;
         	insert into stats(STAT_DATE, STAT, `VALUE`)
-			    values(curtime(), "BESTSELLERS", quantity);
+			values(curtime(), "BESTSELLERS", quantity);
 		end $$
 
 DELIMITER ;
