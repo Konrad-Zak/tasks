@@ -28,6 +28,7 @@ dependencies {
 	compile('io.springfox:springfox-swagger-ui:2.7.0')
 	compile('org.springframework.boot:spring-boot-starter-mail:1.5.7.RELEASE')
 	compile('com.google.code.gson:gson:2.7')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
