@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
@@ -27,7 +26,16 @@ public class SimpleEmailService {
         LOGGER.info("Starting email preparation...");
         try {
             javaMailSender.send(createMimeMessage(mail));
-            //javaMailSender.send(createMailMessage(mail));
+            LOGGER.info("Email has been send");
+        }catch (MailException e){
+            LOGGER.error("Failed to process email sending: ",e.getMessage(),e);
+        }
+    }
+
+    public void sendStandardMail(final Mail mail){
+        LOGGER.info("Starting email preparation...");
+        try {
+            javaMailSender.send(createMailMessage(mail));
             LOGGER.info("Email has been send");
         }catch (MailException e){
             LOGGER.error("Failed to process email sending: ",e.getMessage(),e);
