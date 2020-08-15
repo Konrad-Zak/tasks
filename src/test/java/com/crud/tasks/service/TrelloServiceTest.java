@@ -28,8 +28,8 @@ public class TrelloServiceTest {
     public void fetchTrelloBoards() {
         //Given
         List<TrelloBoardDto> trelloBoardDtos = new ArrayList<>();
-        trelloBoardDtos.add(new TrelloBoardDto("test","1", new ArrayList<>()));
-        trelloBoardDtos.add(new TrelloBoardDto("test 2","2", new ArrayList<>()));
+        trelloBoardDtos.add(new TrelloBoardDto("1","test", new ArrayList<>()));
+        trelloBoardDtos.add(new TrelloBoardDto("2","test 2", new ArrayList<>()));
         when(trelloClient.getTrelloBoards()).thenReturn(trelloBoardDtos);
 
         //When
